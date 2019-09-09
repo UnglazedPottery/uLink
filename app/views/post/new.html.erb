@@ -1,0 +1,22 @@
+<form action="/employees" method="post">
+
+<label for="first_name">First Name:</label>
+<input id="first_name" type="text" name="first_name">
+<label for="last_name">Last Name:</label>
+<input id="last_name" type="text" name="last_name">
+
+<label for="alias">Alias:</label>
+<input id="alias" type="text" name="alias">
+<label for="title">Title</label>
+<input id="title" type="text" name="title">
+<label for="office">Office</label>
+<input id="office" type="text" name="office">
+
+<select name = "id">
+    <% @dogs.each do |dog| %>
+  <option value="<%= dog.id %>"><%= dog.name %></option>
+    <% end %>
+</select>
+
+<input type="submit" value="Submit">
+</form>

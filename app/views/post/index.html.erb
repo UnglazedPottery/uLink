@@ -1,0 +1,5 @@
+<h2>Employee Index</h2>
+
+<% @employees.each do |employee| %>
+    <a class="button" href="/employees/<%= employee.id %>"><%= employee.first_name %></a><br>
+<% end %>

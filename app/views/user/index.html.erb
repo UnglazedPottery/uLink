@@ -1,0 +1,5 @@
+<h2>Dog Index</h2>
+
+<% @dogs.each do |dog| %>
+    <a class="button" href="/dogs/<%= dog.id %>"><%= dog.name %> <%= dog.employees.count %></a><br>
+<% end %>
