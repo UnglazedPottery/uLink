@@ -1,0 +1,5 @@
+<h2>Topics</h2>
+
+<% @topics.each do |topic| %>
+    <a class="button" href="/topics/<%= topic.id %>"><%= topic.name %></a><br>
+<% end %>

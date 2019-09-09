@@ -1,0 +1,7 @@
+<h2><%= @topic.name %> Topic </h2>
+
+<% @topic.posts.each do |p| %>
+    <a class="button" href=<%= p.url %>><%= p.note %></a><br>
+<% end %>
+
+<br><br><a class="button" href="/">Home</a>
