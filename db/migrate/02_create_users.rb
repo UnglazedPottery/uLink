@@ -4,8 +4,6 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :username
       t.string :password
 
-      validates :username, presence: true, uniqueness: true
-
     end
   end
 end

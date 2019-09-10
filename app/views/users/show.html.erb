@@ -1,9 +1,6 @@
-<h2><%= @dog.name %></h2>
+<h2><%= @user.username %></h2>
 
-breed: <%= @dog.breed %><br>
-age: <%= @dog.age %><br>
-
-employees:
-<% @dog.employees.each do |employee| %>
-    <%= employee.first_name %>
+<strong> posts: </strong>
+<% @user.posts.each do |post| %>
+    <%= post.note %>
 <% end %>
