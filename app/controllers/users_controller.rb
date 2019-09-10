@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 		@user = User.find_by({ username: params[:username], password: params[:password] })
 		# byebug
         if @user #&& @user.valid?
-            session[:current_user_id] = user.id
+            session[:current_user_id] = @user.id
 			redirect_to "/users/#{@user.id}"
 		else
 			render 'login'
