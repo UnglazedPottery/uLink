@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :topics
   resources :users
 
-  get('/login', to: 'authentication#login')
-  post('/authenticate', to: 'authentication#authenticate')
+  get('/login', to: 'users#login')
+  post('/authenticate', to: 'users#authenticate')
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

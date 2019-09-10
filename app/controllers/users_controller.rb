@@ -18,11 +18,10 @@ class UsersController < ApplicationController
 		if @user && @user.valid?
 			@user.save
 			# session[:user_id] = user.id
-			redirect_to "/users/#{@user.id}", notice: "Logged in!"
+			redirect_to "/users/#{@user.id}"
 		else
 			puts "faaaaaaaaaail!"
 			flash.now[:alert] = "Username or password is invalid"
-			flash.now[:notice] = "FAAAAAIIIIIIL"
 			render "new"
 		end
 	end
@@ -31,11 +30,13 @@ class UsersController < ApplicationController
 	end
 	
 	def authenticate
-		@user = User.find_by({ username: params[:user][:username] })
-		
-        if @user && @user.valid? # && user.authenticate(params[:user][:password])
+		@user = User.find_by({ username: params[:username], password: params[:password] })
+		# byebug
+        if @user #&& @user.valid?
             session[:current_user_id] = user.id
-            redirect_to "/topics"
+			redirect_to "/users/#{@user.id}"
+		else
+			render 'login'
         end
     end
 
