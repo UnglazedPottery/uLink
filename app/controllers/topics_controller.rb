@@ -29,4 +29,16 @@ class TopicsController < ApplicationController
     #     redirect_to "/topics/#{@topic.id}"
     # end
 
+    def html
+        render 'htmlPage.html.erb'
+    end
+
+    def css 
+        render 'cssPage.html.erb'
+    end
+
+    def javascript 
+        render 'javascriptPage.html.erb'
+    end
+
 end
