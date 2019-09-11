@@ -8,13 +8,15 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
     end
 
-    def new
-		@post = Post.new
-	end
-
 	def create
-	  @post = Post.create(post_params)
-	  redirect_to post_path(@post)
+		@post = Post.create({
+            likes: 0,
+            topic_id: params[:id],
+            url: params[:url],
+            note: params[:note]
+		})
+		
+	  redirect_to "/topics/#{params[:id]}"
 	end
 
 	def edit

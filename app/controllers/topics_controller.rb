@@ -15,7 +15,9 @@ class TopicsController < ApplicationController
     # end
 
     def show
+        @post = Post.new
         @topic = Topic.find(params[:id])
+        render 'show'
     end
 
     # def edit
@@ -34,12 +36,8 @@ class TopicsController < ApplicationController
     end
 
     def css 
-        @post = Post.new
-        @post.likes = 0
-        @post.topic_id = 2
-
-        @storedPosts = Post.all
-
+        @topic = Topic.find(params[:id])
+        
         render 'cssPage.html.erb'
     end
 

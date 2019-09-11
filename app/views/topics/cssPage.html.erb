@@ -1,5 +1,5 @@
 <head>
-  <title> CSS Page</title>
+  <title> Topic show page</title>
   <style>
     .mainBanner {
         display: block-inline;
@@ -29,7 +29,7 @@
 <body>
 
 <img src="/assets/5x5CSS.png" class="sideBanner">
-<img src="/assets/calm.jpg" class="mainBanner">
+<img src="/assets/calm.jpg" class="mainBanner"> 
 <img src="/assets/5x5CSS.png" class="sideBanner"><br>
 
 
@@ -46,16 +46,17 @@
   <%= f.submit %>
 <% end %>
 
-<h1> CSS posts: </h1>
-<% @storedPosts.each do |post| %>
-<% if post.topic_id == 2 %>
-<%= post.url %>
-<%= post.note %>
+<h1><%= @topic.name %> posts: </h1>
+
+<% if @topic.posts %>
+  <% @topic.posts.each do |p| %>
+      <a class="button" href=<%= p.url %>><%= p.note %></a><br>
+  <% end %>
 <% else %>
-<%= "No Posts!" %>
-<% end %>
+  <%= "No Posts!" %>
 <% end %>
 
+<br><br><a class="button" href="/">Home</a>
 
 </div>
 </body>
