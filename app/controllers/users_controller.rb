@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 			redirect_to "/users/#{@user.id}"
 		else
 			puts "faaaaaaaaaail!"
-			flash.now[:alert] = "Username or password is invalid"
+			flash.now[:alert] = "Username must be unique, no blanks."
 			render "new"
 		end
 	end
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 		# byebug
         if @user && @user.authenticate(params[:password])#&& @user.valid?
             session[:current_user_id] = @user.id
-			redirect_to "/users/#{@user.id}", notice: "Logged in!"
+			redirect_to "/users/#{@user.id}"
 		else
 			flash.now[:alert] = "Email or password is invalid"
 			render 'login'
