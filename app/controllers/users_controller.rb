@@ -30,15 +30,21 @@ class UsersController < ApplicationController
 	end
 	
 	def authenticate
-		@user = User.find_by({ username: params[:username], password: params[:password] })
+		@user = User.find_by({ username: params[:username] })
 		# byebug
-        if @user #&& @user.valid?
+        if @user && @user.authenticate(params[:password])#&& @user.valid?
             session[:current_user_id] = @user.id
-			redirect_to "/users/#{@user.id}"
+			redirect_to "/users/#{@user.id}", notice: "Logged in!"
 		else
+			flash.now[:alert] = "Email or password is invalid"
 			render 'login'
         end
-    end
+	end
+	
+	def destroy
+		session[:user_id] = nil
+		redirect_to root_url, notice: "Logged out!"
+	end
 
 	# def edit
 	# 	@user = User.find(params[:id])
