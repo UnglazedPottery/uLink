@@ -1,17 +1,14 @@
 class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
 
-
-    def check_for_authentication
-        if(current_user == nil)
-            redirect_to("/login")
-        end
+  helper_method :current_user
+  
+  def current_user
+    if session[:user_id]
+      @current_user ||= User.find(session[:user_id])
+    else
+      @current_user = nil
     end
-
-    def current_user
-        if session[:current_customer_id] 
-            return Customer.find(session[:current_customer_id])
-        end
-    end
+  end
 
 end

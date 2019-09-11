@@ -1,4 +1,7 @@
+<p id=”alert”><%= alert %></p>
+
 <h1>Login</h1>
+
 <%= form_with method: 'POST', url: '/authenticate' do | f | %>
     <div>
         <%= f.label :username %>

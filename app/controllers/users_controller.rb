@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 			redirect_to "/users/#{@user.id}"
 		else
 			puts "faaaaaaaaaail!"
-			flash.now[:alert] = "Username or password is invalid"
+			flash.now[:alert] = "Username must be unique, no blanks."
 			render "new"
 		end
 	end
@@ -30,15 +30,21 @@ class UsersController < ApplicationController
 	end
 	
 	def authenticate
-		@user = User.find_by({ username: params[:username], password: params[:password] })
+		@user = User.find_by({ username: params[:username] })
 		# byebug
-        if @user #&& @user.valid?
+        if @user && @user.authenticate(params[:password])#&& @user.valid?
             session[:current_user_id] = @user.id
 			redirect_to "/users/#{@user.id}"
 		else
+			flash.now[:alert] = "Email or password is invalid"
 			render 'login'
         end
-    end
+	end
+	
+	def destroy
+		session[:user_id] = nil
+		redirect_to root_url, notice: "Logged out!"
+	end
 
 	# def edit
 	# 	@user = User.find(params[:id])
