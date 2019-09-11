@@ -34,6 +34,12 @@ class TopicsController < ApplicationController
     end
 
     def css 
+        @post = Post.new
+        @post.likes = 0
+        @post.topic_id = 2
+
+        @storedPosts = Post.all
+
         render 'cssPage.html.erb'
     end
 

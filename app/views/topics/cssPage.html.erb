@@ -19,6 +19,9 @@
         width: 20%;
         height: 320px;
     }
+    #postsSection {
+        text-align: center;
+    }
 
   </style>
 </head>
@@ -29,4 +32,30 @@
 <img src="/assets/calm.jpg" class="mainBanner">
 <img src="/assets/5x5CSS.png" class="sideBanner"><br>
 
+
+<div id="postsSection">
+<h3>Create New Post</h3>
+
+<%= form_for(@post) do |f| %>
+  <label>url:</label><br>
+  <%= f.text_field :url %><br>
+
+  <label>note:</label><br>
+  <%= f.text_field :note %><br><br>
+
+  <%= f.submit %>
+<% end %>
+
+<h1> CSS posts: </h1>
+<% @storedPosts.each do |post| %>
+<% if post.topic_id == 2 %>
+<%= post.url %>
+<%= post.note %>
+<% else %>
+<%= "No Posts!" %>
+<% end %>
+<% end %>
+
+
+</div>
 </body>
