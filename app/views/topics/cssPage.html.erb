@@ -38,7 +38,7 @@
 
 <%= form_for(@post) do |f| %>
   <label>url:</label><br>
-  <%= f.text_field :url %><br><br>
+  <%= f.text_field :url %><br>
 
   <label>note:</label><br>
   <%= f.text_field :note %><br><br>
@@ -46,7 +46,15 @@
   <%= f.submit %>
 <% end %>
 
-<h1> Here are the posts: </h1>
+<h1> CSS posts: </h1>
+<% @storedPosts.each do |post| %>
+<% if post.topic_id == 2 %>
+<%= post.url %>
+<%= post.note %>
+<% else %>
+<%= "No Posts!" %>
+<% end %>
+<% end %>
 
 
 </div>
