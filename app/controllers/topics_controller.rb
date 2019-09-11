@@ -34,6 +34,8 @@ class TopicsController < ApplicationController
     end
 
     def css 
+        @post = Post.new
+        @post.likes = 0
         render 'cssPage.html.erb'
     end
 
