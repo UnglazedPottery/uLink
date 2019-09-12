@@ -28,9 +28,9 @@
 
 <body>
 
-<img src="" class="sideBanner">
+<img src="<%= @topic.image %>" class="sideBanner">
 <img src="/assets/calm.jpg" class="mainBanner"> 
-<img src="" class="sideBanner"><br>
+<img src="<%= @topic.image %>" class="sideBanner"><br>
 
 
 <div id="postsSection">
@@ -47,12 +47,20 @@
   <%= f.submit %>
 <% end %>
 
-<h2><%= @topic.name %> Topic </h2>
+<h2><%= @topic.name %> Topic: </h2>
 <% @topic.posts.each do |p| %>
     <a class="button" href=<%= p.url %>><%= p.note %></a><br>
 <% end %>
 
-<br><br><a class="button" href="/">Home</a>
+<br><br><% if current_user %>
+  Logged in as <%= current_user.username %>.
+  <a href="/users/destroy">Logout</a>
+<% else %>
+  <a href="/users/new">Signup</a> or 
+  <a href="/login">Login</a>
+<% end %><br>
+
+<a class="button" href="/">Home</a>
 
 </div>
 </body>

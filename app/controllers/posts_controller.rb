@@ -9,11 +9,13 @@ class PostsController < ApplicationController
     end
 
 	def create
+		# byebug
 		@post = Post.create({
             likes: 0,
             topic_id: params[:id],
-            url: params[:url],
-            note: params[:note]
+            url: params[:post][:url],
+			note: params[:post][:note],
+			user_id: session[:current_user_id]
 		})
 		
 	  redirect_to "/topics/#{params[:id]}"

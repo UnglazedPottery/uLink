@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 		# byebug
 		if @user && @user.valid?
 			@user.save
-			# session[:user_id] = user.id
+			session[:current_user_id] = @user.id
 			redirect_to "/users/#{@user.id}"
 		else
 			puts "faaaaaaaaaail!"
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 	end
 	
 	def destroy
-		session[:user_id] = nil
+		session[:current_user_id] = nil
 		redirect_to root_url, notice: "Logged out!"
 	end
 

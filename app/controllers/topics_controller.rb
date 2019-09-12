@@ -3,20 +3,23 @@ class TopicsController < ApplicationController
         @topics = Topic.all
     end
 
-    # def new
-    #     @topic = Topic.new
-    # end
+    def new
+        @topic = Topic.new
+    end
 
-    # def create
-    #     @topic = Topic.create({
-    #         name: params[:name],1
-    #     })
-    #     redirect_to "/topics"
-    # end
+    def create
+        # byebug
+        @topic = Topic.create({
+            name: params[:topic][:name],
+            image: params[:topic][:image]
+        })
+        redirect_to "/topics"
+    end
 
     def show
         @post = Post.new
         @topic = Topic.find(params[:id])
+        @user = User.find_by_id(session[:user_id])
         render 'show'
     end
 
